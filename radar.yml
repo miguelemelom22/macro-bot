@@ -1,0 +1,65 @@
+name: Radar y alertas
+
+on:
+  schedule:
+    # Cada 2 horas durante horario de mercado de EE.UU. (lun-vie).
+    # 13:00-21:00 UTC cubre de 9am a 5pm ET en horario de verano.
+    - cron: '0 13,15,17,19,21 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'Saltar el filtro de umbrales y consultar directo'
+        type: boolean
+        default: false
+
+# Necesario para que el bot pueda guardar su estado de vuelta en el repo
+permissions:
+  contents: write
+
+# Evita que dos corridas se pisen si una se retrasa
+concurrency:
+  group: radar-alertas
+  cancel-in-progress: false
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - run: pip install -r requirements.txt
+
+      # Etapa 1 (sin IA) descarta la mayoría de las corridas sin costo.
+      # Solo si algo cruza umbral se consulta al modelo.
+      - name: Revisar disparadores
+        run: python radar.py ${{ inputs.forzar && '--forzar' || '' }}
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # Alertas de umbral sobre tus posiciones. Sin IA: constatan un hecho y
+      # te devuelven a tu propia regla.
+      - name: Revisar alertas de umbral
+        run: python alertas.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      # El estado debe persistir entre corridas: GitHub Actions no lo guarda solo.
+      - name: Guardar estado
+        run: |
+          if [[ -n $(git status --porcelain estado.json) ]]; then
+            git config user.name  "macro-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add estado.json
+            git commit -m "estado: radar $(date -u +%Y-%m-%dT%H:%M)"
+            git push
+          else
+            echo "Sin cambios en el estado."
+          fi

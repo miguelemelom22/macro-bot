@@ -1,0 +1,7 @@
+# Titulares que pegues tú — uno por línea.
+# Útil si tienes acceso a Bloomberg Terminal u otra fuente sin RSS público.
+# Las líneas que empiezan con # se ignoran.
+# Entran con prioridad máxima sobre los titulares automáticos.
+#
+# Ejemplo (borra estas líneas y pega las tuyas):
+# Treasury doubles buyback operations to at least $4 billion per operation

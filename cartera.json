@@ -1,0 +1,95 @@
+{
+  "contexto": "Inversionista principiante en etapa de aprendizaje, trabajando con mentores. Horizonte de ~8 meses. Cartera balanceada v2: bloque de crecimiento en IA/semis, bloque de calidad no-tecnologico, duracion en Tesoro, y oro como cobertura de estanflacion. Le preocupa la concentracion en semiconductores y el riesgo fiscal en la parte larga de la curva.",
+  "posiciones": [
+    {
+      "ticker": "NVDA",
+      "peso": 13,
+      "bloque": "Crecimiento"
+    },
+    {
+      "ticker": "META",
+      "peso": 11,
+      "bloque": "Crecimiento"
+    },
+    {
+      "ticker": "GOOGL",
+      "peso": 9,
+      "bloque": "Crecimiento"
+    },
+    {
+      "ticker": "MU",
+      "peso": 6,
+      "bloque": "Crecimiento"
+    },
+    {
+      "ticker": "SMH",
+      "peso": 8,
+      "bloque": "Crecimiento"
+    },
+    {
+      "ticker": "SCHD",
+      "peso": 13,
+      "bloque": "Calidad"
+    },
+    {
+      "ticker": "MA",
+      "peso": 10,
+      "bloque": "Calidad"
+    },
+    {
+      "ticker": "ICE",
+      "peso": 9,
+      "bloque": "Calidad"
+    },
+    {
+      "ticker": "TLT",
+      "peso": 8,
+      "bloque": "Duracion"
+    },
+    {
+      "ticker": "IEF",
+      "peso": 6,
+      "bloque": "Duracion"
+    },
+    {
+      "ticker": "GLD",
+      "peso": 4,
+      "bloque": "Cobertura"
+    },
+    {
+      "ticker": "USDT",
+      "peso": 3,
+      "bloque": "Liquidez"
+    }
+  ],
+  "radar": {
+    "silencio_dias": 4,
+    "umbral_tasa_pb": 12,
+    "umbral_titular": 9,
+    "umbrales_mercado": {
+      "VIX": 15.0,
+      "S&P 500": 1.8,
+      "Nasdaq 100": 2.2,
+      "Brent": 4.0,
+      "Oro": 2.5,
+      "Dólar (DXY)": 1.0
+    }
+  },
+  "reglas": {
+    "caida_posicion_dia": 6.0,
+    "subida_posicion_dia": 8.0,
+    "caida_cartera_dia": 3.0,
+    "horas_silencio_posicion": 48,
+    "max_alertas_dia": 2,
+    "niveles": {
+      "TLT": {
+        "bajo": 78,
+        "nota": "Revisión obligatoria del bloque de duración. Bajo $78 significa que el mercado descuenta un problema fiscal estructural, no un ciclo de tasas."
+      },
+      "MU": {
+        "bajo": 190,
+        "nota": "Revisar la tesis de Micron. Lo que importa no es el precio sino los precios de la memoria DRAM: si caen, el argumento de '6.7x es barato' deja de sostenerse."
+      }
+    }
+  }
+}
