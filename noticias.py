@@ -28,6 +28,10 @@ FEEDS = {
     "MarketWatch": "https://feeds.content.dowjones.io/public/rss/mw_topstories",
     "Yahoo Finanzas": "https://finance.yahoo.com/news/rssindex",
     "Reserva Federal": "https://www.federalreserve.gov/feeds/press_all.xml",
+    "CNBC Finanzas": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
+    "CNBC Internacional": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362",
+    "MarketWatch Mercados": "https://feeds.content.dowjones.io/public/rss/mw_marketpulse",
+    "Investing Economía": "https://www.investing.com/rss/news_14.rss",
 }
 
 
@@ -36,24 +40,37 @@ FEEDS = {
 # Peso alto: mueve el mercado completo
 MACRO_FUERTE = [
     "federal reserve", "fed ", "fomc", "powell", "warsh", "rate cut", "rate hike",
-    "interest rate", "treasury", "yield", "inflation", "cpi", "ppi", "jobs report",
-    "payroll", "unemployment", "gdp", "recession", "tariff", "deficit", "debt ceiling",
-    "ecb", "bank of japan", "dollar", "oil price", "crude", "opec",
+    "interest rate", "treasury", "yield", "yields", "inflation", "cpi", "ppi",
+    "jobs report", "payroll", "unemployment", "gdp", "recession", "tariff",
+    "deficit", "debt ceiling", "ecb", "bank of japan", "dollar", "oil price",
+    "crude", "opec", "central bank", "bond", "bonds", "stocks", "stock market",
+    "s&p 500", "nasdaq", "dow jones", "wall street", "rally", "selloff",
+    "sell-off", "volatility", "sanctions", "trade war", "monetary policy",
 ]
 
 # Peso medio: sectorial amplio, sigue siendo macro
 MACRO_MEDIO = [
     "bond market", "credit market", "consumer spending", "retail sales",
-    "housing", "mortgage", "manufacturing", "services pmi", "trade deficit",
+    "housing", "mortgage", "manufacturing", "pmi", "trade deficit",
     "emerging markets", "dominican", "caribbean", "latin america",
-    "ai spending", "data center", "semiconductor demand",
+    "ai spending", "data center", "semiconductor", "chip", "energy",
+    "commodities", "gold", "currency", "economy", "economic", "growth",
+    "consumer", "labor market", "supply chain", "geopolitic", "election",
+    "budget", "fiscal", "china", "europe", "japan", "investors", "markets",
 ]
 
 # Nombres de empresa: NO van en el brief diario (eso es cartera, no macro).
 # Se reservan para el brief del viernes.
 EMPRESAS = [
+    # Las de tu cartera
     "nvidia", "micron", "meta ", "alphabet", "google", "mastercard",
+    "intercontinental exchange",
+    # Otras grandes que mueven índices y sectores
     "broadcom", "amd", "intel", "apple", "amazon", "tesla", "microsoft",
+    "tsmc", "taiwan semiconductor", "asml", "qualcomm", "oracle", "netflix",
+    "jpmorgan", "goldman sachs", "bank of america", "visa", "berkshire",
+    "exxon", "chevron", "walmart", "boeing", "openai", "anthropic",
+    "earnings", "guidance", "quarterly results",
 ]
 
 # Descartar: ruido que no aporta
