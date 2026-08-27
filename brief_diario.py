@@ -128,8 +128,9 @@ CIFRAS DE MERCADO DE HOY (ya verificadas, úsalas tal cual):
 TITULARES DE LAS ÚLTIMAS HORAS:
 {titulares}
 
-Escribe una sección breve (máximo 220 palabras) con las 2 o 3 noticias más \
-relevantes. Para cada una:
+Escribe una sección con las 5 noticias más relevantes del momento — menos solo \
+si de verdad no hay cinco que valgan la pena. Máximo 450 palabras en total, así \
+que sé conciso en cada una. Para cada una:
 - Una línea de qué pasó, con TUS PROPIAS PALABRAS (nunca copies el titular textual)
 - Una o dos líneas de por qué importa y qué mecanismo económico hay detrás
 
@@ -148,8 +149,14 @@ Si un titular menciona un dato que no está ahí, descríbelo cualitativamente.
 - NO recomiendes comprar ni vender nada. Explica, no dirijas.
 - Si los titulares son irrelevantes o repetitivos, DILO en una línea: es una \
 respuesta válida y valiosa. No fabriques importancia.
-- Este es un brief MACRO. Si un titular habla solo de una empresa concreta, \
-ignóralo — eso se revisa el viernes.
+- Puedes incluir noticias de empresas concretas (resultados, guidance, \
+movimientos de un sector) además de las macro. Cuando lo hagas, explica el \
+mecanismo: por qué ese hecho mueve a esa empresa o a su sector, no solo que se \
+movió. Si la empresa está en la cartera de la persona, puedes mencionarlo, pero \
+NO sugieras qué hacer al respecto.
+- Prioriza variedad: no dediques las cinco noticias al mismo tema. Si el día \
+estuvo dominado por un solo evento, cúbrelo bien en una y usa las demás para \
+otros frentes (tasas, energía, geopolítica, sectores, internacional).
 - Formato Telegram: usa *un asterisco* para negritas, nunca ** dobles. Sin encabezados \
 con almohadilla.
 """
@@ -158,7 +165,7 @@ con almohadilla.
 def _bloque_noticias(numeros_plano: str) -> str | None:
     # Los titulares que pegaste tú van primero, luego los de RSS
     manuales = noticias.manuales()
-    rss = noticias.obtener(maximo=6)
+    rss = noticias.obtener(maximo=18, horas=48, incluir_empresas=True)
     titulares = manuales + rss
 
     log.info("Titulares: %d manuales + %d de RSS", len(manuales), len(rss))
@@ -198,7 +205,7 @@ def construir() -> str:
         partes += ["⚠️ No pude obtener datos de mercado hoy.", ""]
 
     if (analisis := _bloque_noticias(numeros_plano)):
-        partes += ["📰 *Lo que está moviendo el mercado*", analisis, ""]
+        partes += ["📰 *Lo que está moviendo el mercado*", "", analisis, ""]
 
     partes += ["📚 *Concepto del día*", _concepto_del_dia(), ""]
     partes += ["_Datos con retraso. Informativo, no asesoría financiera._"]
