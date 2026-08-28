@@ -1,0 +1,57 @@
+name: Brief diario
+
+on:
+  schedule:
+    # Cuatro intentos como red de seguridad: los cron de GitHub Actions no
+    # garantizan ejecución y en horas de carga se descartan. El código evita
+    # que llegue duplicado — solo el primero que corra envía.
+    - cron: '17 11 * * 1-5'   # 7:17am RD
+    - cron: '43 11 * * 1-5'   # 7:43am RD
+    - cron: '11 12 * * 1-5'   # 8:11am RD
+    - cron: '38 12 * * 1-5'   # 8:38am RD
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'Enviar aunque ya se haya enviado hoy'
+        type: boolean
+        default: false
+
+# Necesario para guardar el registro de envíos
+permissions:
+  contents: write
+
+concurrency:
+  group: brief-diario
+  cancel-in-progress: false
+
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - run: pip install -r requirements.txt
+
+      - run: python brief_diario.py ${{ inputs.forzar && '--forzar' || '' }}
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Guardar registro de envio
+        run: |
+          if [[ -n $(git status --porcelain estado.json) ]]; then
+            git config user.name  "macro-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add estado.json
+            git commit -m "estado: brief diario enviado"
+            git pull --rebase --autostash || true
+            git push
+          else
+            echo "Sin cambios en el estado."
+          fi
