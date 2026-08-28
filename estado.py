@@ -28,6 +28,7 @@ VACIO = {
     "ultimo_radar": None,
     "titulares_vistos": [],
     "ultimos_valores": {},
+    "envios": {},  # {"brief_diario": "2026-08-28", ...}
 }
 
 
@@ -88,3 +89,30 @@ def silencio_activo(estado: dict, dias_minimos: float) -> bool:
 
 def marcar_radar_enviado(estado: dict) -> None:
     estado["ultimo_radar"] = datetime.now(timezone.utc).isoformat()
+
+
+# --- Control de envío diario -------------------------------------------------
+
+def ya_enviado_hoy(tarea: str, zona: str = "America/Santo_Domingo") -> bool:
+    """
+    True si `tarea` ya se envió hoy.
+
+    Existe porque los cron de GitHub Actions no garantizan ejecución: si se
+    programan varios disparos como red de seguridad, hay que evitar que llegue
+    el mismo mensaje tres veces.
+    """
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    est = cargar()
+    hoy = datetime.now(ZoneInfo(zona)).date().isoformat()
+    return est.get("envios", {}).get(tarea) == hoy
+
+
+def marcar_enviado_hoy(tarea: str, zona: str = "America/Santo_Domingo") -> None:
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    est = cargar()
+    est.setdefault("envios", {})[tarea] = datetime.now(ZoneInfo(zona)).date().isoformat()
+    guardar(est)
