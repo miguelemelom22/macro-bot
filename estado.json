@@ -59,10 +59,24 @@
     "5d9a78f1280af15f",
     "c16f71eedca1efb5",
     "645fa82fd46db4cc",
-    "176356d884b2b478"
+    "176356d884b2b478",
+    "8cbd54cc147f149b",
+    "0ee8f9961dc7e3ff",
+    "3c0dfd6712f54f09",
+    "c08a5bb98504ccc7",
+    "e1be936cd40ad2f1",
+    "0204c2f534e6d85d",
+    "1dc0e4065752cdbd",
+    "91926da5d5b13779",
+    "bff1511add9c9d85",
+    "fa2746677080b5c1",
+    "84dee0ad859d7d1d"
   ],
   "ultimos_valores": {},
   "envios": {
     "brief_diario": "2026-09-01"
+  },
+  "alertas_enviadas": {
+    "cerca_bajo:TLT": "2026-09-01T13:32:31.346035+00:00"
   }
 }
