@@ -1,9 +1,6 @@
 {
   "ultimo_radar": "2026-08-26T20:42:29.355756+00:00",
   "titulares_vistos": [
-    "6d52d0cc7c64a7fb",
-    "98c2035ea451d849",
-    "28b3969f7c20a253",
     "5f5d1f7add9db8ef",
     "02b6423e91d835d2",
     "cd1a5becc2a1f098",
@@ -200,13 +197,16 @@
     "481b0274f9325740",
     "b4d54d3f04855c6b",
     "20d44a9264dd2d7a",
-    "87ddb9ef61e22758"
+    "87ddb9ef61e22758",
+    "fa2515293862739b",
+    "b0e0b65d90bd1565",
+    "89bc8c897eb7b830"
   ],
   "ultimos_valores": {},
   "envios": {
     "brief_diario": "2026-09-11"
   },
   "alertas_enviadas": {
-    "cerca_bajo:TLT": "2026-09-09T15:35:06.159061+00:00"
+    "cerca_bajo:TLT": "2026-09-11T17:31:42.399467+00:00"
   }
 }
