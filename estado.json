@@ -1,21 +1,6 @@
 {
   "ultimo_radar": "2026-08-26T20:42:29.355756+00:00",
   "titulares_vistos": [
-    "9fa93adabd4075f0",
-    "9a04fc2d5895e6c6",
-    "8381a8d8aed336b9",
-    "8e41f58ba4aa8458",
-    "63a2366bd7049e5d",
-    "e22af705f7dfb336",
-    "2c9fa014d52c1282",
-    "764a2dae3b6a25b6",
-    "3804d0016cf3ab9e",
-    "ae0d9ae095e74748",
-    "ec597d1923ce9392",
-    "beb6b10382c30d78",
-    "e2bfae9abccdd163",
-    "f3d3e56463ce3f2a",
-    "d214d52a8e5a7cb7",
     "4a6e74858a646883",
     "e57732b97259be0a",
     "ea43d751c729d5ef",
@@ -200,13 +185,29 @@
     "e3e0e51652758a5d",
     "42a01f7b1a5650bb",
     "90669cb8c348420f",
-    "e1cd795e88a79217"
+    "e1cd795e88a79217",
+    "efd26b0907b37639",
+    "d69d3fd96dfd20ef",
+    "a35aefef6e6a38da",
+    "f3ce0fbc6770cd18",
+    "d66bfe26839212eb",
+    "c74e9d870d732068",
+    "c42a42b0480def5f",
+    "9a41e388c4b6b914",
+    "976ae2b154d7c797",
+    "5c5480947dfeab4f",
+    "6c7bf82dcfbc54ea",
+    "a0286817165939ea",
+    "a098ab852aea952b",
+    "7f0a47551d385a51",
+    "527d6f52fa77cd59"
   ],
   "ultimos_valores": {},
   "envios": {
     "brief_diario": "2026-09-14"
   },
   "alertas_enviadas": {
-    "cerca_bajo:TLT": "2026-09-11T17:31:42.399467+00:00"
+    "cerca_bajo:TLT": "2026-09-14T13:35:30.289441+00:00",
+    "caida:MU": "2026-09-14T13:35:30.289445+00:00"
   }
 }
