@@ -1,19 +1,6 @@
 {
   "ultimo_radar": "2026-08-26T20:42:29.355756+00:00",
   "titulares_vistos": [
-    "cdd6eb88508f9b5d",
-    "2964f8f30d5d596d",
-    "00ae11a2b12b102a",
-    "bd19f9f1563afaeb",
-    "00793b9b5ac8d0b3",
-    "0eaeafe5fa3e716f",
-    "01049d79250698c6",
-    "b3e1b4c0136d0fcf",
-    "8aeab6e9285aaa23",
-    "abbc1bc8036e99a5",
-    "83a0cdce2b8d7461",
-    "94c4719f38c8ca05",
-    "a86555b83e1ad3a2",
     "5b717a647161384e",
     "4653088eb5ff6510",
     "84ff6ebe0a611135",
@@ -200,14 +187,27 @@
     "e2c5190d45311714",
     "1bd8a38c4da3ee14",
     "47293b73228a4488",
-    "c51db52de700cb70"
+    "c51db52de700cb70",
+    "da6064377f3ce7f5",
+    "99c690d5514c0fd6",
+    "65be1629275393ae",
+    "284bb473026829c6",
+    "e6d003c3efd4cb0b",
+    "58d5a9eedb3c62ae",
+    "6231588da70915cc",
+    "698d3f48846e4fb3",
+    "c958025bb5efc00d",
+    "a35e4010fb2703aa",
+    "98c8da2aa5ebefc6",
+    "bd695a70a2406078",
+    "9a900b012225aed3"
   ],
   "ultimos_valores": {},
   "envios": {
     "brief_diario": "2026-09-23"
   },
   "alertas_enviadas": {
-    "cerca_bajo:TLT": "2026-09-21T13:32:25.785078+00:00",
+    "cerca_bajo:TLT": "2026-09-23T13:33:50.232399+00:00",
     "caida:MU": "2026-09-14T13:35:30.289445+00:00",
     "subida:META": "2026-09-21T17:30:34.932112+00:00"
   }
