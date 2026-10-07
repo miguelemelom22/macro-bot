@@ -1,0 +1,48 @@
+name: Verificar secretos
+
+on:
+  workflow_dispatch:
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Que secretos llegan
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CARTERA_JSON: ${{ secrets.CARTERA_JSON }}
+        run: |
+          echo "=============================================="
+          echo "SECRETOS"
+          echo "=============================================="
+          for s in TELEGRAM_TOKEN TELEGRAM_CHAT_ID ANTHROPIC_API_KEY CARTERA_JSON; do
+            valor="${!s}"
+            if [ -z "$valor" ]; then
+              echo "  FALTA   $s  (vacio o no existe)"
+            else
+              echo "  OK      $s  (${#valor} caracteres)"
+            fi
+          done
+
+          echo ""
+          echo "=============================================="
+          echo "QUE DICE semanal.yml EN EL REPO"
+          echo "=============================================="
+          if grep -q "CARTERA_JSON" .github/workflows/semanal.yml; then
+            echo "  SI tiene la linea CARTERA_JSON:"
+            grep -n "CARTERA_JSON" .github/workflows/semanal.yml
+          else
+            echo "  NO tiene la linea CARTERA_JSON."
+            echo "  Bloque env actual:"
+            grep -n -A6 "env:" .github/workflows/semanal.yml
+          fi
+
+          echo ""
+          echo "=============================================="
+          echo "ARCHIVOS EN LA RAIZ"
+          echo "=============================================="
+          ls -1 *.py *.json 2>/dev/null
