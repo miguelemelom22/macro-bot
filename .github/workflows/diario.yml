@@ -1,0 +1,79 @@
+name: Brief diario
+
+# Dos puertas de entrada, a proposito:
+#
+#   workflow_dispatch -> lo que usa cron-job.org. Se ejecuta de inmediato.
+#   schedule          -> respaldo. GitHub lo encola y puede llegar horas tarde,
+#                        pero cubre el dia en que el servicio externo falle.
+#
+# Un solo cron de respaldo, no cuatro: con el disparo externo funcionando, cada
+# cron extra es una ejecucion mas que depende de que estado.json este al dia.
+# Alineado a las 8:09 RD = 12:09 UTC, la misma hora del trabajo externo.
+
+on:
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'Enviar aunque ya se haya enviado hoy'
+        type: boolean
+        default: false
+  schedule:
+    - cron: '9 12 * * 1-5'   # 8:09am RD
+
+permissions:
+  contents: write            # necesario para guardar estado.json
+
+concurrency:
+  group: brief-diario
+  cancel-in-progress: false
+
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10      # si se cuelga, muere en 10 min y no consume horas
+
+    steps:
+      - name: Bajar el repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: main          # sin esto, un dispatch puede traer otra rama
+
+      # Clave y facil de pasar por alto. actions/checkout entrega el repo tal
+      # como estaba cuando la ejecucion se CREO, no cuando corre. Si estuvo
+      # encolada, estado.json llega viejo y el bot cree que no ha enviado nada
+      # hoy. De ahi salieron los cuatro briefs repetidos de septiembre: el
+      # anti-duplicado existia, pero leia un archivo desactualizado.
+      - name: Traer el estado real
+        run: |
+          git config user.name  "macro-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git pull --rebase --autostash origin main
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Enviar brief
+        run: python brief_diario.py ${{ inputs.forzar && '--forzar' || '' }}
+        env:
+          TELEGRAM_TOKEN:    ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID:  ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CARTERA_JSON:      ${{ secrets.CARTERA_JSON }}
+
+      - name: Guardar registro de envio
+        if: always()         # si el brief fallo a mitad, igual guarda lo hecho
+        run: |
+          if [[ -n $(git status --porcelain estado.json) ]]; then
+            git add estado.json
+            git commit -m "estado: brief diario enviado"
+            git pull --rebase --autostash origin main
+            git push
+          else
+            echo "Sin cambios en el estado."
+          fi
