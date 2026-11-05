@@ -1,15 +1,6 @@
 {
   "ultimo_radar": "2026-08-26T20:42:29.355756+00:00",
   "titulares_vistos": [
-    "50ad4bae309dfe4b",
-    "7702f39d9c91dc95",
-    "539b7a33a259015d",
-    "84da16678bdb9c4e",
-    "bae411dacec9882f",
-    "e1dca20b0f43a8b2",
-    "1d8740cef8552b4e",
-    "e27bfeba30fb0a39",
-    "15fdb5961e023795",
     "b3896032a337d7cf",
     "a8eba6e0f72ad1e6",
     "32cb0580c8a2c5fb",
@@ -200,14 +191,23 @@
     "7cef99cc0f7a7fea",
     "33be0155163192b4",
     "6f8139973c5f9712",
-    "562d2254630041f9"
+    "562d2254630041f9",
+    "010cf635a3f8ad34",
+    "8dcfa04a69bad453",
+    "a1b1deeaaa8349cc",
+    "9f8f0cd4f4fedc87",
+    "b7c2edf7391d7525",
+    "d9afd32d561212e9",
+    "f22ab14c9cd1a497",
+    "147f19cc09b5d131",
+    "f2adaf4195ad3cdc"
   ],
   "ultimos_valores": {},
   "envios": {
     "brief_diario": "2026-11-04"
   },
   "alertas_enviadas": {
-    "cerca_bajo:TLT": "2026-11-02T22:05:24.747344+00:00",
+    "cerca_bajo:TLT": "2026-11-05T01:15:33.794174+00:00",
     "caida:MU": "2026-11-04T20:15:02.653030+00:00",
     "subida:META": "2026-09-21T17:30:34.932112+00:00",
     "nivel_bajo:TLT": "2026-10-09T23:00:46.285811+00:00",
